@@ -11,7 +11,6 @@ class AddCommentForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log(this.props)
     this.props.createComment({
       content: this.state.newComment,
       post_id: this.props.postId

@@ -10,6 +10,8 @@ export const INCREASE_VOTES_FAILED = 'INCREASE_VOTES_FAILED'
 export const DECREASE_VOTES_SUCCESS = 'DECREASE_VOTES_SUCCESS'
 export const DECREASE_VOTES_FAILED = 'DECREASE_VOTES_FAILED'
 
+export const FILTER_POST_TITLE = 'FILTER_POST_TITLE'
+
 const BASE_URL = 'http://localhost:8082/api'
 export const fetchPosts = () => {
   return async dispatch => {
@@ -90,5 +92,14 @@ export const decreaseVotes = id => {
         payload: err
       })
     }
+  }
+}
+
+export const filterPosts = str => {
+  return dispatch => {
+    dispatch({
+      type: FILTER_POST_TITLE,
+      payload: str
+    })
   }
 }

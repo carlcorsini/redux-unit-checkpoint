@@ -7,9 +7,9 @@ import { connect } from 'react-redux'
 class AddPostForm extends Component {
   state = {
     title: '',
-    body: '',
+    content: '',
     author: '',
-    imgUrl: ''
+    img_url: ''
   }
 
   handleSubmit = e => {
@@ -17,6 +17,12 @@ class AddPostForm extends Component {
     this.props.createPost(this.state)
 
     this.props.toggleForm()
+  }
+
+  handleBlurAndChange = (e, stateKey) => {
+    this.setState({ [stateKey]: e.target.value })
+    e.target.style.boxShadow = '0px 0px 5px green'
+    if (e.target.value === '') e.target.style.boxShadow = '0px 0px 5px red'
   }
 
   render() {
@@ -30,7 +36,11 @@ class AddPostForm extends Component {
                 type="text"
                 name="title"
                 id="title-field"
-                onChange={e => this.setState({ title: e.target.value })}
+                onFocus={e => {
+                  if (e.target.value === '')
+                    e.target.style.boxShadow = '0 0 5px red'
+                }}
+                onChange={e => this.handleBlurAndChange(e, 'title')}
               />
             </FormGroup>
             <FormGroup>
@@ -39,7 +49,11 @@ class AddPostForm extends Component {
                 type="text"
                 name="body"
                 id="body-field"
-                onChange={e => this.setState({ body: e.target.value })}
+                onFocus={e => {
+                  if (e.target.value === '')
+                    e.target.style.boxShadow = '0 0 5px red'
+                }}
+                onChange={e => this.handleBlurAndChange(e, 'content')}
               />
             </FormGroup>
             <FormGroup>
@@ -48,7 +62,11 @@ class AddPostForm extends Component {
                 type="text"
                 name="author"
                 id="author-field"
-                onChange={e => this.setState({ author: e.target.value })}
+                onFocus={e => {
+                  if (e.target.value === '')
+                    e.target.style.boxShadow = '0 0 5px red'
+                }}
+                onChange={e => this.handleBlurAndChange(e, 'author')}
               />
             </FormGroup>
             <FormGroup>
@@ -57,7 +75,11 @@ class AddPostForm extends Component {
                 type="text"
                 name="image"
                 id="image-field"
-                onChange={e => this.setState({ imgUrl: e.target.value })}
+                onFocus={e => {
+                  if (e.target.value === '')
+                    e.target.style.boxShadow = '0 0 5px red'
+                }}
+                onChange={e => this.handleBlurAndChange(e, 'img_url')}
               />
             </FormGroup>
             <Button type="submit">Submit</Button>
