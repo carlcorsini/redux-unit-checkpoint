@@ -14,9 +14,11 @@ class AddPostForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    this.props.createPost(this.state)
-
-    this.props.toggleForm()
+    const { title, content, author, img_url } = this.state
+    if (title && content && author && img_url) {
+      this.props.createPost(this.state)
+      this.props.toggleForm()
+    }
   }
 
   handleBlurAndChange = (e, stateKey) => {
